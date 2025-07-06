@@ -1,10 +1,15 @@
-pipeline {
-    agent any
+pipeline { 
+    agent {
+        docker {
+            image 'alpine:latest'
+        }
+    }
 
     stages {
-        stage('Test') {
+        stage('Docker Agent Test') {
             steps {
-                echo '🎉 Hello from Jenkins!'
+                echo '🎉 Hello from inside a Docker container!'
+                sh 'uname -a'
             }
         }
     }
